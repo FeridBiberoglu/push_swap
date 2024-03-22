@@ -36,7 +36,7 @@ void target_node(node_t *stack_a, node_t *stack_b)
 	node_t *target;
 	int closest;
 
-	while(a)
+	while(stack_a)
 	{
 		closest = -2147483648;
 		bcurrent = stack_b;
@@ -53,9 +53,10 @@ void target_node(node_t *stack_a, node_t *stack_b)
 			stack_a->target_node = biggestnumber(stack_b);
 		else
 			stack_a->target_node = target_node;
-		a = a->next;
+		stack_a = stack_a->next;
 	}
 }
+
 void set_middle_node(node_t *stack)
 {
 	int i;
@@ -72,5 +73,25 @@ void set_middle_node(node_t *stack)
 		stack->index = i;
 		stack = stack->next;
 		i++;
+	}
+}
+
+void cheapest(node_t *stack_a, node_t *stack_b)
+{
+	int size_a;
+	int size_b;
+
+	size_a = stack_size(stack_a);
+	size_b = stack_size(stack_b);
+	while(stack_a)
+	{
+		stack_a->cost = stack_a->index;
+		if(stack_a->middle == 0)
+			stack_a->cost = size_a - stack_a->index;
+		if(stack_a->target->middle == 1)
+			stack_a->cost += stack_a->target->index;
+		else
+			stack_a->cost += size_b - stack_a->target->index;
+		stack_a = stack_a->next;
 	}
 }

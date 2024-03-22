@@ -19,7 +19,7 @@ typedef struct node
 	int 		index;
 	int			middle;
 	int			data;
-	struct node *target_node;
+	int			cost;
 	struct node *target;
 	struct node	*prev;
 	struct node	*next;
