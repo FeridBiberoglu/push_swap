@@ -119,7 +119,9 @@ struct node	*make_stack_b(struct node **stack_a, int argc)
 		return (0);
 	stack_b = add_last_node(stack_b, (*stack_a)->data);
 	remove_first_node(stack_a);
-	pa(stack_a, &stack_b);
+	printf("pa\n");
+	if(argc > 5)
+		pa(stack_a, &stack_b,'a');
 	return (stack_b);
 }
 
@@ -134,10 +136,8 @@ int	main(int argc, char **argv)
 	if(!stack_a)
 		return (0);
 	if(argc <= 4)
-		return (sort_no_push(&stack_a), 0);
-	stack_b = make_stack_b(&stack_a, argc);
-	if (!stack_b)
-		return (0);
+		return (sort_three(&stack_a));
+	// sort(&stack_a);
 	return (0);
 }
 

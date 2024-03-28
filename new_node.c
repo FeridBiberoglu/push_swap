@@ -22,18 +22,14 @@ void remove_first_node(struct node **head)
 	(*head)->prev = NULL;
 }
 
-int sort_no_push(node_t **stack_a)
+int sort_three(node_t **stack_a)
 {
-	if((*stack_a)->data < (*stack_a)->next->data && (*stack_a)->next->data < (*stack_a)->next->next->data)
-		return 0;
+	if(check_sorted(*stack_a))
+		return 1;
 	if((*stack_a)->data > (*stack_a)->next->data && (*stack_a)->data > (*stack_a)->next->next->data)
-		return(printf("sa\nrra\n"));
-	if((*stack_a)->data < (*stack_a)->next->data && (*stack_a)->next->data > (*stack_a)->next->next->data
-		&& (*stack_a)->data < (*stack_a)->next->next->data)	
-		return(printf("rra\nsa\n"));
-	if((*stack_a)->data > (*stack_a)->next->data && (*stack_a)->next->data < (*stack_a)->next->next->data)
-		return(printf("sa\n"));
-	if((*stack_a)->data < (*stack_a)->next->data && (*stack_a)->next->data > (*stack_a)->next->next->data)
-		return(printf("rra\n"));
-	return(printf("ra\n"));    
-}
+		ra(stack_a, 'a');
+	else if((*stack_a)->next->next->data > (*stack_a)->data && (*stack_a)->next->next->data > (*stack_a)->next->data)
+		rra(stack_a, 'a');
+	if((*stack_a)->data > (*stack_a)->next->data)
+		sa(stack_a, 'a');
+} 
