@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:56:35 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/03/13 15:39:17 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/05 10:09:40 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,12 @@ int	main(int argc, char **argv)
 	if(!stack_a)
 		return (0);
 	if(argc <= 4)
-		return (sort_three(&stack_a));
-	// sort(&stack_a);
+	{
+		sort_three(&stack_a);
+		print_list_data(stack_a, NULL);
+		return 0;
+	}
+	sort(&stack_a, argc);
 	return (0);
 }
 

@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <unistd.h>
 
 node_t *biggestnumber(node_t *stack)
 {
@@ -53,7 +54,7 @@ void target_node(node_t *stack_a, node_t *stack_b)
 		if(closest == -2147483648)
 			stack_a->target = biggestnumber(stack_b);
 		else
-			stack_a->target = target_node;
+			stack_a->target = target;
 		stack_a = stack_a->next;
 	}
 }
@@ -102,17 +103,28 @@ void mark_cheapest(node_t *stack_a)
 	int cheap;
 	node_t *cheapest_node;
 
-	cheap = stack_a->cost;
-	while(stack_a)
+	cheap = (stack_a)->cost;
+	while((stack_a))
 	{
-		if(stack_a->cost < cheap)
+		if((stack_a)->cost < cheap)
 		{
-			cheap = stack_a->cost;
+			cheap = (stack_a)->cost;
 			cheapest_node = stack_a;
 		}
-		stack_a = stack_a->next;
+		if(stack_a->next)
+			stack_a = (stack_a)->next;
+		else 
+			break;
 	}
-	cheapest_node->cheapest = 1;
+	while(stack_a)
+	{
+		if((stack_a)->cost == cheap)
+			(stack_a)->cheapest = 1;
+		if(stack_a->prev)
+			stack_a = (stack_a)->prev;
+		else 
+			break;
+	}
 }
 
 void init_stack_a(node_t *stack_a, node_t *stack_b)
