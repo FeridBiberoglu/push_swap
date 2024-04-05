@@ -45,12 +45,12 @@ void sort(node_t **stack_a, int argc)
 
     stack_b = make_stack_b(stack_a, argc);
     size_a = stack_size(*stack_a);
-    init_stack_a(stack_a, &stack_b);
+    print_list_data(*stack_a, stack_b);
     while(size_a > 3)
     {
+        init_stack_a(stack_a, &stack_b);
         a_to_b(stack_a, &stack_b);
         size_a--;
     }
-    print_list_data(*stack_a, stack_b);
     return;
 }

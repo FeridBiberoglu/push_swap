@@ -35,7 +35,7 @@ int stack_size(node_t *stack)
 void target_node(node_t *stack_a, node_t *stack_b)
 {
 	node_t *bcurrent;
-	node_t *target;
+	node_t *target_b;
 	int closest;
 	node_t *temp = stack_a;
 	while((stack_a))
@@ -47,16 +47,17 @@ void target_node(node_t *stack_a, node_t *stack_b)
 			if(bcurrent->data < (stack_a)->data && bcurrent->data > closest)
 			{
 				closest = bcurrent->data;
-				target = bcurrent;
+				target_b = bcurrent;
 			}
 			bcurrent = bcurrent->next;
 		}
 		if(closest == -2147483648)
 			(stack_a)->target = biggestnumber(stack_b);
 		else
-			(stack_a)->target = target;
+			(stack_a)->target = target_b;
 		(stack_a) = (stack_a)->next;
 	}
+	stack_a = temp;
 }
 
 void set_middle_node(node_t *stack)
