@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:56:35 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/05 10:09:40 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:52:58 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_list_data(node_t *stacka, node_t *stackb)
 		printf("PRINT LIST DATA: Stack a is empty!\n");
 	while (stacka != NULL)
 	{
-		printf("Node %d - Num: %d\n", i, stacka->data);
+		printf("Node %d - Num: %d- cheapest: %d\n", i, stacka,stacka->target);
 		stacka = stacka->next;
 		i++;
 	}
@@ -29,18 +29,18 @@ void	print_list_data(node_t *stacka, node_t *stackb)
 		printf("PRINT LIST DATA: Stack B is empty!\n");
 	while (stackb != NULL)
 	{
-		printf("Node %d - Num: %d\n", i, stackb->data);
+		printf("Node %d - Num: %d - cheap: %d\n", i, stackb->data, stackb);
 		stackb = stackb->next;
 		i++;
 	}
 }
 
 
-struct node	*add_last_node(struct node *head, int data)
+node_t *add_last_node(node_t *head, int data)
 {
-	struct node	*new_node;
+	node_t *new_node;
 
-	new_node = malloc(sizeof(struct node));
+	new_node = malloc(sizeof(node_t));
 	if (!new_node)
 		return (NULL);
 	head->next = new_node;
@@ -82,14 +82,14 @@ int	check_args(int argc, char **argv)
 }
 
 
-struct node	*make_stack_a(struct node *stack_a, int argc, char **argv)
+node_t *make_stack_a(node_t *stack_a, int argc, char **argv)
 {
 	int	i;
-	struct node *temp;
+	node_t *temp;
 
 	if(!stack_a)
 		return (0);
-	temp = malloc(sizeof(struct node));
+	temp = malloc(sizeof(node_t));
 	if (!check_args(argc, argv) || !temp || !stack_a)
 		return (0);
 	i = 1;
@@ -107,31 +107,31 @@ struct node	*make_stack_a(struct node *stack_a, int argc, char **argv)
 	return (stack_a);
 }
 
-struct node	*make_stack_b(struct node **stack_a, int argc)
+node_t *make_stack_b(node_t **stack_a, int argc)
 {
-	struct node	*stack_b;
+	node_t *stack_b;
 	int i;
 	
 	i = 0;
 
-	stack_b = malloc(sizeof(struct node));
+	stack_b = malloc(sizeof(node_t));
 	if (!stack_b)
 		return (0);
 	stack_b = add_last_node(stack_b, (*stack_a)->data);
 	remove_first_node(stack_a);
-	printf("pa\n");
+	printf("pb\n");
 	if(argc > 5)
-		pa(stack_a, &stack_b,'a');
+		pa(stack_a, &stack_b,'b');
 	return (stack_b);
 }
 
 int	main(int argc, char **argv)
 {
 	int			i;
-	struct node	*stack_a;
-	struct node	*stack_b;
+	node_t *stack_a;
+	node_t *stack_b;
 
-	stack_a = malloc(sizeof(struct node));
+	stack_a = malloc(sizeof(node_t));
 	stack_a = make_stack_a(stack_a, argc, argv);
 	if(!stack_a)
 		return (0);
@@ -142,6 +142,7 @@ int	main(int argc, char **argv)
 		return 0;
 	}
 	sort(&stack_a, argc);
+
 	return (0);
 }
 

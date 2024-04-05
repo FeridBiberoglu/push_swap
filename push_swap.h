@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 14:13:10 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/05 10:06:11 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/05 16:21:17 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct node
 	struct node	*next;
 }				node_t;
 
+void	print_list_data(node_t *stacka, node_t *stackb);
+
 void sa(struct node **stack_a, char c);
 void rrr(node_t **stack_a, node_t **stack_b);
 void sort_three(node_t **stack_a);
@@ -38,7 +40,7 @@ void pa(node_t **stack_a, node_t **stack_b, char c);
 void rr(node_t **stack_a, node_t **stack_b);
 int check_sorted(node_t *stack);
 void sort(node_t **stack_a, int argc);
-void init_stack_a(node_t *stack_a, node_t *stack_b);
+void init_stack_a(node_t **stack_a, node_t **stack_b);
 struct node	*make_stack_b(struct node **stack_a, int argc);
 int stack_size(node_t *stack);
 node_t *biggestnumber(node_t *stack);
