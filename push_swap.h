@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 14:13:10 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/05 16:21:17 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:06:48 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ struct node	*add_last_node(struct node *head, int data);
 void	remove_first_node(struct node **head);
 void pa(node_t **stack_a, node_t **stack_b, char c);
 void rr(node_t **stack_a, node_t **stack_b);
-int check_sorted(node_t *stack);
+int check_sorted_a(node_t *stack);
+int check_sorted_b(node_t *stack);
 void sort(node_t **stack_a, int argc);
 void init_stack_a(node_t **stack_a, node_t **stack_b);
 struct node	*make_stack_b(struct node **stack_a, int argc);

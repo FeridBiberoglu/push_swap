@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:56:35 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/05 18:12:08 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:26:44 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_list_data(node_t *stacka, node_t *stackb)
 		printf("PRINT LIST DATA: Stack B is empty!\n");
 	while (stackb != NULL)
 	{
-		printf("Node %d - Num: %d\n" , i, stackb->data);
+		printf("Node %d - Num: %d cheapest: %d\n" , i, stackb->data, stackb->data);
 		stackb = stackb->next;
 		i++;
 	}
@@ -63,9 +63,9 @@ int	check_args(int argc, char **argv)
 		return (0);
 	while (argc > j)
 	{
-		if (argv[j][i] < 48 || argv[j][i] > 57 && (argv[j][i] != 45
-			|| argv[j][i] != 32))
-			return (0);
+	// if (argv[j][i] < 48 || (argv[j][i] > 57 && (argv[j][i] == 45
+    //         || argv[j][i] == 32)))
+	// 		return (0);
 		if ((argv[j][i] == 45 && argv[j][i + 1] == 45) || (argv[j][i] == 32
 			&& argv[j][i + 1] == 32))
 			return (0);
@@ -127,9 +127,7 @@ node_t *make_stack_b(node_t **stack_a, int argc)
 
 int	main(int argc, char **argv)
 {
-	int			i;
 	node_t *stack_a;
-	node_t *stack_b;
 
 	stack_a = malloc(sizeof(node_t));
 	stack_a = make_stack_a(stack_a, argc, argv);
@@ -138,7 +136,7 @@ int	main(int argc, char **argv)
 	if(argc <= 4)
 	{
 		sort_three(&stack_a);
-		print_list_data(stack_a, NULL);
+		// print_list_data(stack_a, NULL);
 		return 0;
 	}
 	sort(&stack_a, argc);
