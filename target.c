@@ -104,7 +104,6 @@ void calculate_cheapest(node_t **stack_a, node_t **stack_b)
 
 void mark_cheapest(node_t *stack)
 {
-
 	int cheap;
 	node_t *cheapest_node;
 	node_t *temp = stack;
@@ -137,6 +136,6 @@ void init_stack_a(node_t **stack_a, node_t **stack_b)
 	set_middle_node(*stack_a);
 	set_middle_node(*stack_b);
 	target_node(*stack_a, *stack_b);
-	calculate_cheapest(stack_a, stack_b);
+	// calculate_cheapest(stack_a, stack_b);
 	mark_cheapest(*stack_a);
 }

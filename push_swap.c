@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:56:35 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/10 18:07:48 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:28:23 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_list_data(node_t *stacka, node_t *stackb)
 		printf("PRINT LIST DATA: Stack a is empty!\n");
 	while (stacka != NULL)
 	{
-		printf("Node %d - Num: %d- cheapest: %d,middle %i cost %i index %i \n", i, stacka->data, stacka->cheapest, stacka->middle, stacka->cost, stacka->index);
+		printf("Node %d - Num %d - cost %d\n", i, stacka->data, stacka->cost);
 		stacka = stacka->next;
 		i++;
 	}

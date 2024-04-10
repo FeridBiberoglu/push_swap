@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:22:36 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/10 14:03:31 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:31:19 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void target_node_b(node_t *stack_a, node_t *stack_b)
 	while((stack_b))
 	{
 		closest = 2147483647;
-		acurrent = stack_b;
+		acurrent = stack_a;
 		while(acurrent)
 		{
 			if(acurrent->data > (stack_b)->data && acurrent->data < closest)
@@ -85,6 +85,6 @@ void init_stack_b(node_t **stack_a, node_t **stack_b)
 	set_middle_node(*stack_a);
 	set_middle_node(*stack_b);
 	target_node_b(*stack_b, *stack_a);
-	calculate_cheapest_b(stack_b, stack_a);
-	mark_cheapest(stack_b);
+	calculate_cheapest(stack_b, stack_a);
+	// mark_cheapest(stack_b);
 }
