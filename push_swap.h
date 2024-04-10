@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 14:13:10 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/09 15:06:48 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:44:40 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,8 @@ void sort(node_t **stack_a, int argc);
 void init_stack_a(node_t **stack_a, node_t **stack_b);
 struct node	*make_stack_b(struct node **stack_a, int argc);
 int stack_size(node_t *stack);
+void mark_cheapest(node_t *stack_a);
+void init_stack_b(node_t **stack_a, node_t **stack_b);
+int stack_size(node_t *stack);
+void set_middle_node(node_t *stack);
 node_t *biggestnumber(node_t *stack);

@@ -1,4 +1,4 @@
-sourcefiles = check_sorted.c moves.c new_node.c push_swap.c sorting.c target.c
+sourcefiles = check_sorted.c moves.c new_node.c push_swap.c sorting.c target.c targetb.c
 objects = $(sourcefiles:.c=.o)
 NAME = algo
 

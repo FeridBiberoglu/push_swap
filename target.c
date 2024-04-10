@@ -102,37 +102,34 @@ void calculate_cheapest(node_t **stack_a, node_t **stack_b)
 	*stack_a = temp;
 }
 
-void mark_cheapest(node_t **stack_a)
+void mark_cheapest(node_t *stack)
 {
+
 	int cheap;
 	node_t *cheapest_node;
-	node_t *temp = *stack_a;
+	node_t *temp = stack;
 
-	cheap = (*stack_a)->cost;
-	while((*stack_a))
+	cheap = 2147483647;
+	cheapest_node = stack;
+	while(stack)
 	{
-		if((*stack_a)->cost < cheap)
+		if(stack->cost < cheap)
 		{
-			cheap = (*stack_a)->cost;
-			cheapest_node = *stack_a;
+			cheap = stack->cost;
+			cheapest_node = stack;
 		}
-		if((*stack_a)->next)
-			*stack_a = (*stack_a)->next;
-		else 
-			break;
+		stack->cheapest = 0;
+		stack = stack->next;
 	}
-	while(*stack_a)
+	while(temp)
 	{
-		if((*stack_a)->cost == cheap)
+		if(temp == cheapest_node)
 		{
-			(*stack_a)->cheapest = 1;
+			temp->cheapest = 1;
 			break;
 		}
-		else
-			(*stack_a)->cheapest = 0;
-		*stack_a = (*stack_a)->prev;
+		temp = temp->next;
 	}
-	*stack_a = temp;
 }
 
 void init_stack_a(node_t **stack_a, node_t **stack_b)
@@ -141,5 +138,5 @@ void init_stack_a(node_t **stack_a, node_t **stack_b)
 	set_middle_node(*stack_b);
 	target_node(*stack_a, *stack_b);
 	calculate_cheapest(stack_a, stack_b);
-	mark_cheapest(stack_a);
+	mark_cheapest(*stack_a);
 }
