@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 14:17:29 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/09 15:07:36 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:10:50 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,19 @@ void sort_three(node_t **stack_a)
 	node_t *max_number;
 
 	max_number = biggestnumber(*stack_a);
-	if(check_sorted_a(*stack_a))
+	int i = check_sorted_a(*stack_a);
+	if(i != 0)
+	{
+		printf("%i\n", i);
 		return;
-	if(*stack_a == max_number)
+	}
+	print_list_data(*stack_a, NULL);
+	if(stack_a == max_number)
 		ra(stack_a, 'a');
 	else if((*stack_a)->next == max_number)
 		rra(stack_a, 'a');
-	if((*stack_a)->data > (*stack_a)->next->data)
+	print_list_data(*stack_a, NULL);
+	if(!check_sorted_a(*stack_a) && (*stack_a)->data > (*stack_a)->next->data)
 		sa(stack_a, 'a');
+	print_list_data(*stack_a, NULL);
 } 

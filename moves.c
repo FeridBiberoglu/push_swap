@@ -2,16 +2,18 @@
 
 void sa(node_t **stack_a, char c)
 {
-	int temp;
-	node_t 		*address = (*stack_a)->next;
+	node_t *temp;
 
-	temp = (*stack_a)->data;
-	(*stack_a)->data = address->data;
-	(*stack_a)->prev = address;
-	(*stack_a)->next = address->next;
-	address->data = temp;
-	address->next = (*stack_a);
-	address->prev = NULL;
+	temp  = (*stack_a)->next;
+	temp->prev = (*stack_a)->prev;
+
+	(*stack_a)->next = temp->next;
+	(*stack_a)->next->prev = (*stack_a);
+	temp->next = *stack_a;
+
+	(*stack_a)->prev = temp;
+	*stack_a = temp;
+	(*stack_a)->prev = NULL;
 	if(c != 'x')
 		printf("s%c\n", c);
 }

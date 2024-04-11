@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:22:36 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/10 19:31:19 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:49:16 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,10 @@ void target_node_b(node_t *stack_a, node_t *stack_b)
 			acurrent = acurrent->next;
 		}
 		if(closest == 2147483647)
-			(stack_b)->target = smallestnumber(stack_b);
+			(stack_b)->target = smallestnumber(stack_a);
 		else
 			(stack_b)->target = target_a;
+
 		(stack_b) = (stack_b)->next;
 	}
 	stack_b = temp;
@@ -84,7 +85,7 @@ void init_stack_b(node_t **stack_a, node_t **stack_b)
 {
 	set_middle_node(*stack_a);
 	set_middle_node(*stack_b);
-	target_node_b(*stack_b, *stack_a);
-	calculate_cheapest(stack_b, stack_a);
+	target_node_b(stack_a, stack_b);
+	// calculate_cheapest(stack_b, stack_a);
 	// mark_cheapest(stack_b);
 }

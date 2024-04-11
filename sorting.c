@@ -67,11 +67,13 @@ void	sort(node_t **stack_a, int argc)
 	}
 	while (!check_sorted_b(stack_b))
 		ra(&stack_b, 'b');
+	if(!check_sorted_b(*stack_a))
+		sort_three(stack_a);
+	print_list_data(*stack_a, stack_b);
 	// while (stack_b)
 	// {
-		init_stack_b(stack_a, &stack_b);
-		print_list_data(*stack_a, stack_b);
-		// move_nodes(&stack_b, stack_a, 'a');
+	// 	init_stack_b(stack_a, &stack_b);
+	// 	move_nodes(&stack_b, stack_a, 'a');
 	// }
 	return ;
 }
