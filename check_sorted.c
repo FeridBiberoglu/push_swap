@@ -8,10 +8,7 @@ int check_sorted_a(node_t *stack)
 	while (temp->next != NULL)
 	{
 		if(temp->next && (temp->data > temp->next->data))
-		{
-		printf("X\n");
 			return (0);
-		}
 		temp = temp->next;
 	}
 	return (1);

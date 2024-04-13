@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 13:22:36 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/11 15:49:16 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/13 16:08:26 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,34 +58,9 @@ void target_node_b(node_t *stack_a, node_t *stack_b)
 	stack_b = temp;
 }
 
-void calculate_cheapest_b(node_t **stack_a, node_t **stack_b)
-{
-	int size_a;
-	int size_b;
-	node_t *temp;
-
-	size_a = stack_size(*stack_a);
-	size_b = stack_size(*stack_b);
-	temp = *stack_b;
-	while((*stack_b))
-	{
-		(*stack_b)->cost = (*stack_b)->index;
-		if((*stack_b)->middle == 0)
-			(*stack_b)->cost = size_b - (*stack_b)->index;
-		if((*stack_b)->target->middle == 1)
-			(*stack_b)->cost += (*stack_b)->target->index;
-		else
-			(*stack_b)->cost += size_a - (*stack_b)->target->index;
-		(*stack_b) = (*stack_b)->next;
-	}
-	*stack_b = temp;
-}
-
 void init_stack_b(node_t **stack_a, node_t **stack_b)
 {
 	set_middle_node(*stack_a);
 	set_middle_node(*stack_b);
-	target_node_b(stack_a, stack_b);
-	// calculate_cheapest(stack_b, stack_a);
-	// mark_cheapest(stack_b);
+	target_node_b(*stack_a, *stack_b);
 }
