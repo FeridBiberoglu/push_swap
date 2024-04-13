@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:56:35 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/13 17:19:30 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/13 17:55:38 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	print_list_data(node_t *stacka, node_t *stackb)
 
 	i = 1;
 	if (stacka == NULL)
-		printf("PRINT LIST DATA: Stack a is empty!\n");
+		ft_printf("PRINT LIST DATA: Stack a is empty!\n");
 	while (stacka != NULL)
 	{
-		printf("Node %d - Num %d - cost %d target %d\n", i, stacka->data,
+		ft_printf("Node %d - Num %d - cost %d target %d\n", i, stacka->data,
 			stacka->cost, stacka->target);
 		stacka = stacka->next;
 		i++;
 	}
 	i = 1;
-	printf("\n");
+	ft_printf("\n");
 	if (stackb == NULL)
 		printf("PRINT LIST DATA: Stack B is empty!\n");
 	while (stackb != NULL)
@@ -118,7 +118,7 @@ node_t	*make_stack_a(node_t *stack_a, int argc, char **argv)
 	temp = stack_a;
 	while (argc > i)
 	{
-		temp = add_last_node(temp, atoi(argv[i]));
+		temp = add_last_node(temp, ft_atoi(argv[i]));
 		i++;
 	}
 	if(!check_doubles(stack_a))
@@ -160,6 +160,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	sort(&stack_a, argc);
+	ft_printf("hallo");
 	return (0);
 }
 

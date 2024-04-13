@@ -1,23 +1,29 @@
-sourcefiles = check_sorted.c moves.c new_node.c push_swap.c sorting.c target.c targetb.c
-objects = $(sourcefiles:.c=.o)
-NAME = algo
+NAME		=	push_swap
+CC			= 	cc
+CFLAGS		=	-Wall -Wextra -Werror -g
+HEADER		=	push_swap.h
+LIBFTDIR	= 	./libft
 
-.PHONY: all clean fclean re
+SRCS 		= 	check_sorted.c moves.c new_node.c push_swap.c sorting.c target.c targetb.c
 
-all: $(NAME)
+LIBFT		= 	$(LIBFTDIR)/libft.a
+OBJS		=	$(SRCS:.c=.o)
 
-$(NAME): $(objects)
-	$(CC) -o $(NAME) $(objects)
+$(NAME): $(OBJS) $(LIBFT)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
-# %.o: %.c
-# 	$(CC) -Wall -Wextra -Werror -c $< -o $@
-%.o: %.c
-	$(CC) -c $< -o $@
+$(LIBFT):
+	@make -C $(LIBFTDIR) all
+
+all:	$(NAME)
 
 clean:
-	rm -f $(objects)
+	@rm -f $(OBJS)
+	@make clean -C $(LIBFTDIR)
 
 fclean: clean
-	rm -f $(NAME) a.out
+	@rm -f $(NAME)
 
-re: fclean all
+re: 	fclean all
+
+.PHONY: all clean fclean re

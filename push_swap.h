@@ -6,13 +6,14 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 14:13:10 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/11 17:04:55 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/13 17:47:54 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft/libft.h"
 
 typedef struct node
 {
