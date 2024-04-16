@@ -1,6 +1,7 @@
 {
 	"github.copilot.editor.enableAutoCompletions": true,
 	"files.associations": {
-		"random": "c"
+		"random": "c",
+		"string": "c"
 	}
 }

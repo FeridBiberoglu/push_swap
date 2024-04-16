@@ -74,6 +74,7 @@ void	sort(node_t **stack_a, int argc)
 		init_stack_b(stack_a, &stack_b);
 		move_nodes(&stack_b, stack_a, 'a');
 	}
+	free_list(&stack_b);
 	while (!check_sorted_a(*stack_a))
 		rra(stack_a, 'a');
 	return ;

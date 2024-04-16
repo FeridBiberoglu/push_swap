@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:29:13 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/02/16 18:59:54 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/16 13:46:03 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "printf.h"
 
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
@@ -65,5 +66,6 @@ int		ft_strchr2(const char *s, int c);
 char	*lastline(char *remain);
 char	*ft_free(char **remain, int yes);
 char	*get_next_line(int fd);
+int	ft_printf(const char *string, ...);
 
 #endif

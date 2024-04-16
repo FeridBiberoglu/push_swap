@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 14:13:10 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/13 17:47:54 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:08:05 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,4 @@ void init_stack_b(node_t **stack_a, node_t **stack_b);
 int stack_size(node_t *stack);
 void set_middle_node(node_t *stack);
 node_t *biggestnumber(node_t *stack);
+void	free_list(node_t **head);

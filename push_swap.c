@@ -6,11 +6,12 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:56:35 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/13 17:55:38 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:10:39 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "../printf.h"
 #include <unistd.h>
 
 void	print_list_data(node_t *stacka, node_t *stackb)
@@ -19,16 +20,15 @@ void	print_list_data(node_t *stacka, node_t *stackb)
 
 	i = 1;
 	if (stacka == NULL)
-		ft_printf("PRINT LIST DATA: Stack a is empty!\n");
+		printf("PRINT LIST DATA: Stack a is empty!\n");
 	while (stacka != NULL)
 	{
-		ft_printf("Node %d - Num %d - cost %d target %d\n", i, stacka->data,
-			stacka->cost, stacka->target);
+		printf("Node %d - Num %d\n", i, stacka->data);
 		stacka = stacka->next;
 		i++;
 	}
 	i = 1;
-	ft_printf("\n");
+	printf("\n");
 	if (stackb == NULL)
 		printf("PRINT LIST DATA: Stack B is empty!\n");
 	while (stackb != NULL)
@@ -118,11 +118,12 @@ node_t	*make_stack_a(node_t *stack_a, int argc, char **argv)
 	temp = stack_a;
 	while (argc > i)
 	{
-		temp = add_last_node(temp, ft_atoi(argv[i]));
+		stack_a = add_last_node(stack_a, ft_atoi(argv[i]));
 		i++;
 	}
 	if(!check_doubles(stack_a))
 		return 0;
+	stack_a = temp;
 	return (stack_a);
 }
 
@@ -137,7 +138,7 @@ node_t	*make_stack_b(node_t **stack_a, int argc)
 		return (0);
 	stack_b = add_last_node(stack_b, (*stack_a)->data);
 	remove_first_node(stack_a);
-	printf("pb\n");
+	ft_printf("pb\n");
 	if (argc > 5)
 		pa(stack_a, &stack_b, 'b');
 	return (stack_b);
@@ -152,27 +153,17 @@ int	main(int argc, char **argv)
 	if (!stack_a)
 	{
 		write(2, "Error\n", 6);
+		free_list(&stack_a);
 		return (0);
 	}
 	if (argc <= 4)
 	{
 		sort_three(&stack_a);
+		print_list_data(stack_a, NULL);
+		free_list(&stack_a);
 		return (0);
 	}
 	sort(&stack_a, argc);
-	ft_printf("hallo");
+	free_list(&stack_a);
 	return (0);
 }
-
-// first push 2 top numbers to stack b
-// find which numbers is the cheapest to push to stack b and keep order
-// keep repeating until 3 numbers are left in stack a
-// then sort the 3 numbers in stack a
-// push  from stack b to stack a
-// with every push to stack a check if its the smallest number while not keep pushhing
-// if its the smallest number sort stack a
-// keep repeating until stack b is empty
-// then sort stack a
-// print the operations
-// free the stacks
-// return 0
