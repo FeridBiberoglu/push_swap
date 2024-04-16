@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 14:17:29 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/16 16:09:40 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/16 20:48:16 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ void free_list(node_t **head)
     }
 }
 
-void	remove_first_node(struct node **head)
+void remove_first_node(node_t **head)
 {
-	struct node	*temp;
-	temp = *head;
-	*head = (*head)->next;
-	free(temp);
+    node_t *temp;
+
+    temp = *head;
+    *head = (*head)->next;
+    (*head)->prev = NULL;
+    free(temp);
 }
 
 void	sort_three(node_t **stack_a)

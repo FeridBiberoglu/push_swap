@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:56:35 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/16 16:10:39 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/16 20:52:37 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,7 @@ node_t	*make_stack_a(node_t *stack_a, int argc, char **argv)
 
 	if (!stack_a)
 		return (0);
-	temp = malloc(sizeof(node_t));
-	if (!check_args(argc, argv) || !temp || !stack_a)
+	if (!check_args(argc, argv))
 		return (0);
 	i = 1;
 	stack_a->data = atoi(argv[i]);
@@ -121,9 +120,9 @@ node_t	*make_stack_a(node_t *stack_a, int argc, char **argv)
 		stack_a = add_last_node(stack_a, ft_atoi(argv[i]));
 		i++;
 	}
+	stack_a = temp;
 	if(!check_doubles(stack_a))
 		return 0;
-	stack_a = temp;
 	return (stack_a);
 }
 
@@ -133,7 +132,6 @@ node_t	*make_stack_b(node_t **stack_a, int argc)
 	int		i;
 
 	i = 0;
-	stack_b = malloc(sizeof(node_t));
 	if (!stack_b)
 		return (0);
 	stack_b = add_last_node(stack_b, (*stack_a)->data);
@@ -159,7 +157,6 @@ int	main(int argc, char **argv)
 	if (argc <= 4)
 	{
 		sort_three(&stack_a);
-		print_list_data(stack_a, NULL);
 		free_list(&stack_a);
 		return (0);
 	}
