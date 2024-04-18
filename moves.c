@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 13:48:08 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/16 13:48:15 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:23:47 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	sa(node_t **stack_a, char c)
 	node_t	*temp;
 
 	temp = (*stack_a)->next;
-	temp->prev = (*stack_a)->prev;
+	// temp->prev = (*stack_a)->prev;
 	(*stack_a)->next = temp->next;
-	(*stack_a)->next->prev = (*stack_a);
+	// (*stack_a)->next->prev = (*stack_a);
 	temp->next = *stack_a;
-	(*stack_a)->prev = temp;
+	// (*stack_a)->prev = temp;
 	*stack_a = temp;
-	(*stack_a)->prev = NULL;
+	// (*stack_a)->prev = NULL;
 	if (c != 'x')
 		ft_printf("s%c\n", c);
 }
@@ -43,11 +43,11 @@ void	pa(node_t **stack_new, node_t **stack_old, char c)
 		return ;
 	temp = *stack_new;
 	*stack_new = (*stack_new)->next;
-	if (*stack_new != NULL)
-		(*stack_new)->prev = NULL;
+	// if (*stack_new != NULL)
+	// 	(*stack_new)->prev = NULL;
 	temp->next = *stack_old;
-	if (*stack_old != NULL)
-		(*stack_old)->prev = temp;
+	// if (*stack_old != NULL)
+	// 	(*stack_old)->prev = temp;
 	*stack_old = temp;
 	ft_printf("p%c\n", c);
 }
@@ -63,8 +63,8 @@ void	ra(node_t **stack_a, char c)
 		temp = temp->next;
 	temp->next = *stack_a;
 	(*stack_a) = (*stack_a)->next;
-	(*stack_a)->prev = NULL;
-	temp->next->prev = temp;
+	// (*stack_a)->prev = NULL;
+	// temp->next->prev = temp;
 	temp->next->next = NULL;
 	if (c != 'x')
 		ft_printf("r%c\n", c);
@@ -92,8 +92,8 @@ void	rra(node_t **stack_a, char c)
 	}
 	last->next = NULL;
 	temp->next = *stack_a;
-	temp->prev = NULL;
-	(*stack_a)->prev = temp;
+	// temp->prev = NULL;
+	// (*stack_a)->prev = temp;
 	*stack_a = temp;
 	if (c != 'x')
 		ft_printf("rr%c\n", c);

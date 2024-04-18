@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:29:13 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/16 13:46:03 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/18 15:51:08 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # include <unistd.h>
 # include "printf.h"
 
-int		ft_atoi(const char *nptr);
+long long		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
 int		ft_isalnum(int c);

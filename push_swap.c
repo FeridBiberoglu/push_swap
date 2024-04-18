@@ -6,61 +6,37 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:56:35 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/16 20:52:37 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:22:15 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
 #include "../printf.h"
+#include "push_swap.h"
 #include <unistd.h>
 
-void	print_list_data(node_t *stacka, node_t *stackb)
+int	check_doubles(node_t *stack_a)
 {
-	int	i;
+	node_t	*temp;
 
-	i = 1;
-	if (stacka == NULL)
-		printf("PRINT LIST DATA: Stack a is empty!\n");
-	while (stacka != NULL)
-	{
-		printf("Node %d - Num %d\n", i, stacka->data);
-		stacka = stacka->next;
-		i++;
-	}
-	i = 1;
-	printf("\n");
-	if (stackb == NULL)
-		printf("PRINT LIST DATA: Stack B is empty!\n");
-	while (stackb != NULL)
-	{
-		printf("Node %d - Num: %d- cheapest: %d, middle %i cost %i index %i \n",
-			i, stackb->data, stackb->cheapest, stackb->middle, stackb->cost,
-			stackb->index);
-		stackb = stackb->next;
-		i++;
-	}
-}
-
-int check_doubles(node_t *stack_a)
-{
-	int j;
-	node_t *temp;
-
-	while(stack_a)
+	if (stack_a->data > 2147483647 || stack_a->data < -2147483648)
+		return (0);
+	while (stack_a)
 	{
 		temp = stack_a->next;
-		while(temp)
+		while (temp)
 		{
-			if(stack_a->data == temp->data)
-				return 0;
+			if (temp->data > 2147483647 || temp->data < -2147483648)
+				return (0);
+			if (stack_a->data == temp->data)
+				return (0);
 			temp = temp->next;
 		}
 		stack_a = stack_a->next;
 	}
-	return 1;
+	return (1);
 }
 
-node_t	*add_last_node(node_t *head, int data)
+node_t	*add_last_node(node_t *head, long long data)
 {
 	node_t	*new_node;
 
@@ -85,19 +61,19 @@ int	check_args(int argc, char **argv)
 		return (0);
 	while (argc > j)
 	{
-		if((argv[j][i] < '0' || argv[j][i] > '9') && 
-			(argv[j][i] != '+' || argv[j][i] != '-'))
-			return 0;
-		if (i != 0  && (argv[j][i] == '-' || argv[j][i] == '+'))
-			return 0;
+		if ((argv[j][i] < '0' || argv[j][i] > '9') && (argv[j][i] != '+'
+				|| argv[j][i] != '-'))
+			return (0);
+		if (i != 0 && (argv[j][i] == '-' || argv[j][i] == '+'))
+			return (0);
 		i++;
-		if(argv[j][i] == '\0')
-			{
-				j++;
-				i = 0;
-			}
+		if (argv[j][i] == '\0')
+		{
+			j++;
+			i = 0;
+		}
 	}
-	return 1;
+	return (1);
 }
 
 node_t	*make_stack_a(node_t *stack_a, int argc, char **argv)
@@ -109,11 +85,9 @@ node_t	*make_stack_a(node_t *stack_a, int argc, char **argv)
 		return (0);
 	if (!check_args(argc, argv))
 		return (0);
-	i = 1;
-	stack_a->data = atoi(argv[i]);
-	stack_a->prev = NULL;
+	stack_a->data = ft_atoi(argv[1]);
 	stack_a->next = NULL;
-	i++;
+	i = 2;
 	temp = stack_a;
 	while (argc > i)
 	{
@@ -121,8 +95,8 @@ node_t	*make_stack_a(node_t *stack_a, int argc, char **argv)
 		i++;
 	}
 	stack_a = temp;
-	if(!check_doubles(stack_a))
-		return 0;
+	if (!check_doubles(stack_a))
+		return (0);
 	return (stack_a);
 }
 

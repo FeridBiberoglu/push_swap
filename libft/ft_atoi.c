@@ -6,18 +6,18 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:02:26 by fbiberog          #+#    #+#             */
-/*   Updated: 2023/10/23 17:02:31 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:16:29 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *ntpr)
+long long	ft_atoi(const char *ntpr)
 {
 	const char	*s;
 	int			i;
-	int			j;
-	int			c;
+	long long	j;
+	long long	c;
 
 	c = 0;
 	j = 1;
