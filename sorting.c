@@ -64,6 +64,28 @@ void move_nodes_b_a(node_t **stack_a, node_t **stack_b)
 	pa(stack_b, stack_a, 'a');
 }
 
+void final_rotate(node_t **stack, char c)
+{
+    node_t *biggest;
+
+    set_middle_node(stack);
+    biggest = biggestnumber(stack);
+    while(!check_sorted_b(stack) && c == 'b')
+    {
+        if(biggest->middle)
+            ra(stack, c);
+        else 
+            rra(stack, c);
+    }
+    while(!check_sorted_b(stack) && c == 'a')
+    {
+        if(!biggest->middle)
+            ra(stack, c);
+        else 
+            rra(stack, c);
+    }
+}
+
 void	sort(node_t **stack_a, int argc)
 {
 	int		size_a;
@@ -78,7 +100,7 @@ void	sort(node_t **stack_a, int argc)
 		size_a--;
 	}
 	while (!check_sorted_b(stack_b))
-		rra(&stack_b, 'b');
+		final_rotate(&stack_b, 'b');
 	if(!check_sorted_a(*stack_a))
 		sort_three(stack_a);
 	while (stack_b)
@@ -87,6 +109,6 @@ void	sort(node_t **stack_a, int argc)
 		move_nodes_b_a(stack_a, &stack_b);
 	}
 	while (!check_sorted_a(*stack_a))
-		rra(stack_a, 'a');
+		final_rotate(stack_a, 'a');
 	return;
 }
