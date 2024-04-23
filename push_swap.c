@@ -6,16 +6,16 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:56:35 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/23 18:54:07 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/23 21:29:57 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <unistd.h>
 
-int	check_doubles(node_t *stack_a)
+int	check_doubles(t_node *stack_a)
 {
-	node_t	*temp;
+	t_node	*temp;
 
 	if (stack_a->data > 2147483647 || stack_a->data < -2147483648)
 		return (0);
@@ -33,20 +33,6 @@ int	check_doubles(node_t *stack_a)
 		stack_a = stack_a->next;
 	}
 	return (1);
-}
-
-node_t	*add_last_node(node_t *head, long long data)
-{
-	node_t	*new_node;
-
-	new_node = malloc(sizeof(node_t));
-	if (!new_node)
-		return (NULL);
-	head->next = new_node;
-	new_node->prev = head;
-	new_node->data = data;
-	new_node->next = NULL;
-	return (new_node);
 }
 
 int	check_args(int argc, char **argv)
@@ -75,13 +61,13 @@ int	check_args(int argc, char **argv)
 	return (1);
 }
 
-node_t	*make_stack_a(node_t *stack_a, int argc, char **argv)
+t_node	*make_stack_a(t_node *stack_a, int argc, char **argv)
 {
 	int		i;
-	node_t	*temp;
+	t_node	*temp;
 
 	if (!check_args(argc, argv))
-		{
+	{
 		free_list(&stack_a);
 		return (0);
 	}
@@ -103,15 +89,16 @@ node_t	*make_stack_a(node_t *stack_a, int argc, char **argv)
 	return (stack_a);
 }
 
-node_t	*make_stack_b(node_t **stack_a, int argc)
+t_node	*make_stack_b(t_node **stack_a, int argc)
 {
-	node_t	*stack_b;
+	t_node	*stack_b;
 	int		i;
 
 	i = 0;
+	stack_b = NULL;
+	stack_b = add_last_node(stack_b, (*stack_a)->data);
 	if (!stack_b)
 		return (0);
-	stack_b = add_last_node(stack_b, (*stack_a)->data);
 	remove_first_node(stack_a);
 	ft_printf("pb\n");
 	if (argc > 5)
@@ -121,9 +108,9 @@ node_t	*make_stack_b(node_t **stack_a, int argc)
 
 int	main(int argc, char **argv)
 {
-	node_t	*stack_a;
-	
-	stack_a = malloc(sizeof(node_t));
+	t_node	*stack_a;
+
+	stack_a = malloc(sizeof(t_node));
 	stack_a = make_stack_a(stack_a, argc, argv);
 	if (!stack_a)
 	{
@@ -137,7 +124,7 @@ int	main(int argc, char **argv)
 		free_list(&stack_a);
 		return (0);
 	}
-	if(!check_sorted_a(stack_a))
+	if (!check_sorted_a(stack_a))
 		sort(&stack_a, argc);
 	free_list(&stack_a);
 	return (0);

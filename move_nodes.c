@@ -6,13 +6,13 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 16:27:21 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/23 16:40:22 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/23 19:09:15 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ready_for_push(node_t **stack_a, node_t **stack_b, node_t *cheapest)
+void	ready_for_push(t_node **stack_a, t_node **stack_b, t_node *cheapest)
 {
 	while ((*stack_a) != cheapest && cheapest->middle == 1)
 		ra(stack_a, 'a');
@@ -24,7 +24,7 @@ void	ready_for_push(node_t **stack_a, node_t **stack_b, node_t *cheapest)
 		rra(stack_b, 'b');
 }
 
-void	rotate(node_t **stack_a, node_t **stack_b, node_t *cheapest)
+void	rotate(t_node **stack_a, t_node **stack_b, t_node *cheapest)
 {
 	while ((*stack_a) != cheapest && (*stack_b) != cheapest->target)
 		rr(stack_a, stack_b);
@@ -34,7 +34,7 @@ void	rotate(node_t **stack_a, node_t **stack_b, node_t *cheapest)
 		ra(stack_b, 'b');
 }
 
-void	reverse_rotate(node_t **stack_a, node_t **stack_b, node_t *cheapest)
+void	reverse_rotate(t_node **stack_a, t_node **stack_b, t_node *cheapest)
 {
 	while ((*stack_a) != cheapest && (*stack_b) != cheapest->target)
 		rrr(stack_a, stack_b);
@@ -44,9 +44,9 @@ void	reverse_rotate(node_t **stack_a, node_t **stack_b, node_t *cheapest)
 		rra(stack_b, 'b');
 }
 
-void	move_nodes_a_b(node_t **stack_a, node_t **stack_b)
+void	move_nodes_a_b(t_node **stack_a, t_node **stack_b)
 {
-	node_t *cheapest;
+	t_node	*cheapest;
 
 	cheapest = *stack_a;
 	while (cheapest->next)

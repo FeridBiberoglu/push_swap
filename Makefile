@@ -1,12 +1,12 @@
 
 
 NAME    := push_swap
-CFLAGS =  #-Wunreachable-code -Ofast
+CFLAGS = -Wall -Wextra -Werror
 LIBFT := ./libft
 
 HEADERS := -I./include -I /include -I$(LIBFT)
 LIBS    := -ldl -pthread -lm $(LIBFT)/libft.a 
-SRCS 	:= 	check_sorted.c moves.c new_node.c push_swap.c sorting.c target.c targetb.c
+SRCS 	:= 	helperfunctions.c moves.c new_node.c push_swap.c sorting.c target.c targetb.c moves2.c move_nodes.c
 OBJS    := ${SRCS:.c=.o}
 
 all:  libft $(NAME)
