@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 14:17:29 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/18 15:45:40 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:38:26 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void free_list(node_t **head)
         free(*head);
         *head = tmp;
     }
+    free(*head);
 }
 
 void remove_first_node(node_t **head)

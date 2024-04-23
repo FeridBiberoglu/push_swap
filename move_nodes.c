@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_nodes.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/23 16:27:21 by fbiberog          #+#    #+#             */
+/*   Updated: 2024/04/23 16:40:22 by fbiberog         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	ready_for_push(node_t **stack_a, node_t **stack_b, node_t *cheapest)
@@ -34,7 +46,7 @@ void	reverse_rotate(node_t **stack_a, node_t **stack_b, node_t *cheapest)
 
 void	move_nodes_a_b(node_t **stack_a, node_t **stack_b)
 {
-	node_t	*cheapest;
+	node_t *cheapest;
 
 	cheapest = *stack_a;
 	while (cheapest->next)
@@ -50,65 +62,4 @@ void	move_nodes_a_b(node_t **stack_a, node_t **stack_b)
 	else
 		ready_for_push(stack_a, stack_b, cheapest);
 	pa(stack_a, stack_b, 'b');
-}
-
-void move_nodes_b_a(node_t **stack_a, node_t **stack_b)
-{
-	while((*stack_a) != (*stack_b)->target)
-	{
-		if((*stack_b)->target->middle == 1)
-			ra(stack_a, 'a');
-		else
-			rra(stack_a, 'a');
-	}
-	pa(stack_b, stack_a, 'a');
-}
-
-void final_rotate(node_t **stack, char c)
-{
-    node_t *biggest;
-
-    set_middle_node(*stack);
-    biggest = biggestnumber(*stack);
-    while(!check_sorted_b(*stack) && c == 'b')
-    {
-        if(biggest->middle)
-            ra(stack, c);
-        else 
-            rra(stack, c);
-    }
-    while(!check_sorted_a(*stack) && c == 'a')
-    {
-        if(biggest->middle)
-            ra(stack, c);
-        else 
-            rra(stack, c);
-    }
-}
-
-void	sort(node_t **stack_a, int argc)
-{
-	int		size_a;
-	node_t	*stack_b;
-
-	stack_b = make_stack_b(stack_a, argc);
-	size_a = stack_size(*stack_a);
-	while (size_a > 3)
-	{
-		init_stack_a(stack_a, &stack_b);
-		move_nodes_a_b(stack_a, &stack_b);
-		size_a--;
-	}
-	while (!check_sorted_b(stack_b))
-		final_rotate(&stack_b, 'b');
-	if(!check_sorted_a(*stack_a))
-		sort_three(stack_a);
-	while (stack_b)
-	{
-		init_stack_b(stack_a, &stack_b);
-		move_nodes_b_a(stack_a, &stack_b);
-	}
-	while (!check_sorted_a(*stack_a))
-		final_rotate(stack_a, 'a');
-	return;
 }

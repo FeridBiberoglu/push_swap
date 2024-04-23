@@ -6,11 +6,10 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:56:35 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/18 16:22:15 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:54:07 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf.h"
 #include "push_swap.h"
 #include <unistd.h>
 
@@ -57,12 +56,12 @@ int	check_args(int argc, char **argv)
 
 	i = 0;
 	j = 1;
-	if (argc < 2)
+	if (argc < 3)
 		return (0);
 	while (argc > j)
 	{
 		if ((argv[j][i] < '0' || argv[j][i] > '9') && (argv[j][i] != '+'
-				|| argv[j][i] != '-'))
+				&& argv[j][i] != '-'))
 			return (0);
 		if (i != 0 && (argv[j][i] == '-' || argv[j][i] == '+'))
 			return (0);
@@ -81,10 +80,11 @@ node_t	*make_stack_a(node_t *stack_a, int argc, char **argv)
 	int		i;
 	node_t	*temp;
 
-	if (!stack_a)
-		return (0);
 	if (!check_args(argc, argv))
+		{
+		free_list(&stack_a);
 		return (0);
+	}
 	stack_a->data = ft_atoi(argv[1]);
 	stack_a->next = NULL;
 	i = 2;
@@ -95,8 +95,11 @@ node_t	*make_stack_a(node_t *stack_a, int argc, char **argv)
 		i++;
 	}
 	stack_a = temp;
-	if (!check_doubles(stack_a))
+	if (!check_doubles(temp))
+	{
+		free_list(&stack_a);
 		return (0);
+	}
 	return (stack_a);
 }
 
@@ -119,7 +122,7 @@ node_t	*make_stack_b(node_t **stack_a, int argc)
 int	main(int argc, char **argv)
 {
 	node_t	*stack_a;
-
+	
 	stack_a = malloc(sizeof(node_t));
 	stack_a = make_stack_a(stack_a, argc, argv);
 	if (!stack_a)
@@ -134,7 +137,8 @@ int	main(int argc, char **argv)
 		free_list(&stack_a);
 		return (0);
 	}
-	sort(&stack_a, argc);
+	if(!check_sorted_a(stack_a))
+		sort(&stack_a, argc);
 	free_list(&stack_a);
 	return (0);
 }
