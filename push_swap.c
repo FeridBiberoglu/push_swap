@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 18:56:35 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/23 21:29:57 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:36:04 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,25 @@ int	check_doubles(t_node *stack_a)
 	return (1);
 }
 
-int	check_args(int argc, char **argv)
+int	check_args(int argc, char **a)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 1;
-	if (argc < 3)
-		return (0);
 	while (argc > j)
 	{
-		if ((argv[j][i] < '0' || argv[j][i] > '9') && (argv[j][i] != '+'
-				&& argv[j][i] != '-'))
-			return (0);
-		if (i != 0 && (argv[j][i] == '-' || argv[j][i] == '+'))
-			return (0);
+		if ((a[j][i] < '0' || a[j][i] > '9') && (a[j][i] != '+'
+				&& a[j][i] != '-'))
+			return (write(2, "Error\n", 6), 0);
+		if ((a[j][i] == '-' || a[j][i] == '+'))
+		{
+			if (i != 0 || a[j][i + 1] == '\0')
+				return (write(2, "Error\n", 6), 0);
+		}
 		i++;
-		if (argv[j][i] == '\0')
+		if (a[j][i] == '\0')
 		{
 			j++;
 			i = 0;
@@ -67,22 +68,20 @@ t_node	*make_stack_a(t_node *stack_a, int argc, char **argv)
 	t_node	*temp;
 
 	if (!check_args(argc, argv))
-	{
-		free_list(&stack_a);
 		return (0);
-	}
-	stack_a->data = ft_atoi(argv[1]);
-	stack_a->next = NULL;
-	i = 2;
+	i = 1;
 	temp = stack_a;
 	while (argc > i)
 	{
 		stack_a = add_last_node(stack_a, ft_atoi(argv[i]));
+		if (i == 1)
+			temp = stack_a;
 		i++;
 	}
 	stack_a = temp;
 	if (!check_doubles(temp))
 	{
+		write(2, "Error\n", 6);
 		free_list(&stack_a);
 		return (0);
 	}
@@ -110,11 +109,12 @@ int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
 
-	stack_a = malloc(sizeof(t_node));
+	if (argc == 1)
+		return (0);
+	stack_a = NULL;
 	stack_a = make_stack_a(stack_a, argc, argv);
 	if (!stack_a)
 	{
-		write(2, "Error\n", 6);
 		free_list(&stack_a);
 		return (0);
 	}

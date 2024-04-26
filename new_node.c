@@ -6,7 +6,7 @@
 /*   By: fbiberog <fbiberog@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 14:17:29 by fbiberog          #+#    #+#             */
-/*   Updated: 2024/04/23 21:29:13 by fbiberog         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:27:59 by fbiberog         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ t_node	*add_last_node(t_node *head, long long data)
 	new_node = malloc(sizeof(t_node));
 	if (!new_node)
 		return (NULL);
-	if (head != NULL)
+	if (head == NULL)
+		head = new_node;
+	else if (head != NULL)
 		head->next = new_node;
 	new_node->data = data;
 	new_node->next = NULL;

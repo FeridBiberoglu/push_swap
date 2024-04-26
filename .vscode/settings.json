@@ -3,5 +3,15 @@
 	"files.associations": {
 		"random": "c",
 		"string": "c"
-	}
+	},
+	"files.autoSave": "afterDelay",
+	"github.copilot.enable": {
+		"plaintext": true,
+		"markdown": true,
+		"scminput": true
+	},
+	"github.copilot.advanced": {
+
+	},
+	"github.copilot.chat.scopeSelection": true
 }
